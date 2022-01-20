@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Noto Serif|Montserrat');
+* {
+    font-family: 'Montserrat';
+}
+body {
+    background-image: url('bg-small.jpg');
+}
+.card {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+h1,h2,h3,h4,h5,h6,.h2 {
+    font-family: 'Noto Serif';
+}
+#footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+ }
