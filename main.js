@@ -1,13 +1,18 @@
 
 $(document).ready(function() {
-
+    
     let newPassword = generatePassword();
 
     $('#txtPassword').html(newPassword);
+
     $('#btnGenerate').click(function() {
         newPassword = generatePassword();
         $('#txtPassword').html(newPassword);
     });
+
+    $('#nCharacters').change(function(){
+        $('#lblCharacters').html($(this).val());
+      });
 });
 
 function getDTStamp() {
@@ -32,25 +37,26 @@ function copyToClipboard(element) {
     showStatus('Copied');
 }
 
-function generatePassword(pLength) {
-    var pLength = (pLength)?(pLength):(8);
-    var keyListAlpha="abcdefghijklmnopqrstuvwxyz",
-        keyListInt="123456789",
-        keyListSpec="!@#_",
-        password='';
-    var len = Math.ceil(pLength/2);
-    len = len - 1;
-    var lenSpec = pLength-2*len;
+function generatePassword() {
 
-    for (i=0;i<len;i++) {
-        password+=keyListAlpha.charAt(Math.floor(Math.random()*keyListAlpha.length));
-        password+=keyListInt.charAt(Math.floor(Math.random()*keyListInt.length));
+    const length = $('#nCharacters').val();
+    const incNumbers = $('#sNumbers').is(":checked");
+    const incSymbols = $('#sSymbols').is(":checked");
+
+    const alpha = "abcdefghjkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ";
+    const numbers = "123456789";
+    const symbols = "!@#$%^&*_-+=";
+
+    let characters = alpha;
+    incNumbers ? (characters += numbers) : "";
+    incSymbols ? (characters += symbols) : "";
+
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      password += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
     }
 
-    for (i=0;i<lenSpec;i++)
-        password += keyListSpec.charAt(Math.floor(Math.random()*keyListSpec.length));
-    password = password.split('').sort(function(){return 0.5-Math.random()}).join('');
-
-    //We return the password to the browser
     return password;
 }
