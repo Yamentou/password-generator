@@ -13,6 +13,6 @@ A simple password generator made with a javascript function.
 - Added a control to exclude numbers.
 
 ## Live Demo
-Live demo is available online at <https://apassword.tk>
+Live demo is available online at <http://apassword.tk>
 
 You can bookmark it :)
